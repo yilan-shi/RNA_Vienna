@@ -1,1 +1,8 @@
+###RNAplfold predicts secondary structures using _______
+###Important flags we'll use here include: 
+  # -u (depth of accessibility, which translates to length of guide)
+    #Use different -u per different length of guide RNA
+  # -W (window span) = 
+
+RNAplfold -u > (save as matrix file)
 
