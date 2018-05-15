@@ -25,7 +25,7 @@
 ### Submit with these flags: 
 
 ```
-RNAplfold -u 22 < yoursequence.fa
+RNAplfold -u 22 -W <#> <yoursequence.fa
 ```
 
 ##### Output is *_lunp* file, which is your matrix file. Preview matrix in terminal. You should see same # of columns as your specified *-u* flag, and same # of rows as your sequence length + 1 (1 extra for header). This step may seem trivial, but is important to weed out any gross errors. 
@@ -47,7 +47,7 @@ cat yourseq_lunp|less
   9 0.996136    0.9919387   0.9416257   0.9109458   0.7673214   0.7262351   0.6367918   0.5766883   0.5772853   NA  NA
  10 0.5856886   0.5843086   0.5835655   0.5382947   0.5172792   0.4713382   0.4463127   0.4205373   0.3834285   0.3872539   NA
  ```
- ##### The first 10 rows should not be *l* = length of *-u* that yo specified. For most low *l* (ie: under 3), you'll may see long stretches of low secondary structure probability, but as *l* increases, it's common to see 0.8 - 0.99 probabilities. 
+ ##### For most low *l* (ie *under 3*), you'll see high unpaired probability, but as *l* increases, it's common to see near-zero unpaired probabilities. Each *l* denotes length of guide you specified with the *-u* flag. Columns across are *l*. Rows down are base pair positions. *CRITICAL* base pair positions are 3' -> 5' direction. 
  
  ##### Exclude first 10 rows from guide design. *NA's* in the first 10 rows are not useful because the program cannot calculate pairing of secondary structure over such a short span of nt's. They will be at the 3' tail end anyways.  
  
@@ -67,7 +67,7 @@ cp yourseq_lunp youseq_lunp.txt
 Open youseq_lunp.txt in Excel. Continue with heatmap and guide design using combination of **Snapgene** and **Excel**. 
 
 ### Alternate Scenarios and Circular RNA Targeting 
-If you want to test different lengths of guides, then submit a NEW RNAplfold -u *<spacer_length>* -W *<#>* for each length. I don't know if a batch processing method. If you figure it out, please add to this markdown!! 
+If you want to test different lengths of guides, then submit a NEW RNAplfold -u *<spacer_length>* -W *<#>* for each length. I don't know of a batch processing method. If you figure it out, please add to this markdown!! 
 
 For circular RNA targeting with Cas/CRISPR system, it was suggested to copy and paste identical segments of the full-length sequence 5' and 3' ends of your sequence. Save your new file with the *.fa* extension. Then perform same pipeline as above. The rationale is that circular RNA's don't have a beginning and end, so in order to "trick" the software to seeing the sequence as seamless, we had to "bury" the original sequence in the middle. Same pipeline can be applied, with the exception of only using final matrix rows that correlate to the middle "buried" sequence for heatmap synthesis. 
 
