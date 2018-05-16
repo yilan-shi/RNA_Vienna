@@ -36,7 +36,7 @@ RNAplfold -u 22 < yoursequence.fa
 ```
 ##### and resubmit by appending job to background:
 ```
-**nohup** RNAplfold -u 22 < yousequence.fa **&**
+nohup RNAplfold -u 22 < yousequence.fa &
 
 ``` 
 When you get a *_lunp* file, view it with 
