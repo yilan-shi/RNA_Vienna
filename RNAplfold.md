@@ -25,12 +25,22 @@
 ### Submit with these flags: 
 
 ```
-RNAplfold -u 22 -W <#> <yoursequence.fa
+RNAplfold -u 22 < yoursequence.fa
 ```
 
 ##### Output is *_lunp* file, which is your matrix file. Preview matrix in terminal. You should see same # of columns as your specified *-u* flag, and same # of rows as your sequence length + 1 (1 extra for header). This step may seem trivial, but is important to weed out any gross errors. 
 
+##### If RNAplfold "freezes" and takes too long, press 
+```
+@
+```
+##### and resubmit by appending job to background:
+```
+**nohup** RNAplfold -u 22 < yousequence.fa **&**
+
 ``` 
+When you get a *_lunp* file, view it with 
+```
 cat yourseq_lunp|less
 ```
 ##### You should see something like:
